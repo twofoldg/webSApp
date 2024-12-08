@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  postgres:
+    restart: always
+    networks:
+      - uni_app
+    image: postgres:17.0
+    container_name: uni_app
+    environment:
+      - POSTGRES_DB=uni_app
+      - POSTGRES_USER=uniUser
+      - POSTGRES_PASSWORD=ChangeIt2024
+    ports:
+      - "5432:5432"
+    volumes:
+      - uni_app:/var/lib/postgresql/data
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+
+networks:
+  uni_app:
+    external: true
+
+volumes:
+  uni_app:
